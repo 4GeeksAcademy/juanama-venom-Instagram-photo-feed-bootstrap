@@ -6,47 +6,317 @@
         <title>Instagram Feed Bootstrap</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <style>
+            .col-4 img {
+              width: 100%;
+              aspect-ratio: 1 / 1;
+              object-fit: cover;
+            }
+        </style>          
     </head>
     <body>
         <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-2 ms-2 mb-3 mt-2">
+                <div class="col-5 ms-4 mb-5 mt-2">
                     <h5><i class="fab fa-instagram mt-2 mb-3"></i> Instagram</h5>
                 </div>
-                <div class="col-6 mb-3 mt-2 me-2">
-                    <button type="button" class="btn btn-success mb-2 mt-2">Create a new post</button>
-                    <button type="button" class="btn btn-secondary mb-2 mt-2">
-                        <i class="fas fa-cog"></i>
+                <div class="col-6 ms-auto me-4 mt-2 mb-3 text-end">
+                    <!-- Botón que abre el modal y botón verde, crear un post -->
+                    <button type="button" class="btn btn-success mb-5 mt-2" data-bs-toggle="modal" data-bs-target="#nuevoPostModal">
+                        Create a new post
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="nuevoPostModal" tabindex="-1" aria-labelledby="nuevoPostLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="nuevoPostLabel">Create a new post</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Add the caption of your post here</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Publicar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bootstrap JS (necesario para que funcione el modal) -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                    <!-- Dropdown con botón de ajustes -->
+                    <div class="dropdown d-inline-block ms-3">
+                        <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1" type="button" id="settingsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-gear"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="settingsDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Accessibility</a></li>
+                            <li><a class="dropdown-item" href="#">Privacy and Data</a></li>
+                            <hr class="my-2">
+                            <li><a class="dropdown-item text-danger" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+                    <!-- Boton de ajustes, se desplega y plega -->
+                    <div class="collapse mt-2" id="settingsInfo">
+                        <div class="card card-body">
+                            <ul class="mb-0">
+                                <li>Profile</li>
+                                <li>Accessibility</li>
+                                <li>Privacy and Data</li>
+                                <hr class="my-4">
+                                <p class="text-danger small mb-0">Log out</p>
+                            </ul>
+                        </div>
+                    </div>
+                    <script>
+                        const settingsInfo = document.getElementById('settingsInfo');
+                        const arrowIcon = document.getElementById('arrowIcon');
+                        settingsInfo.addEventListener('show.bs.collapse', () => {
+                            arrowIcon.classList.remove('bi-chevron-down');
+                            arrowIcon.classList.add('bi-chevron-up');
+                        });
+                        settingsInfo.addEventListener('hide.bs.collapse', () => {
+                            arrowIcon.classList.remove('bi-chevron-up');
+                            arrowIcon.classList.add('bi-chevron-down');
+                        });
+                    </script>
+                </div>
+            </div>
+            <!-- ✅ Caja visual que contiene botones y galería -->
+            <div class="container p-3 border rounded shadow-sm" style="background-color: #f8f9fa;">
+                <!-- 🔘 Botones de vista -->
+                <div class="d-flex justify-content-center mb-3 gap-2">
+                    <!-- Botón de vista de 3 imágenes por fila -->
+                    <button id="gridViewBtn" class="btn btn-sm text-primary">
+                        <i class="fas fa-th fa-lg"></i>
+                    </button>
+                    <!-- Botón de vista de 1 imagen por fila -->
+                    <button id="listViewBtn" class="btn btn-sm text-secondary">
+                        <i class="fas fa-square fa-lg"></i>
                     </button>
                 </div>
-            </div>            
-            <div class="row">
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-                </div>
-                <div class="col-1">
-                    <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
+                <script>
+                    const gridBtn = document.getElementById('gridViewBtn');
+                    const listBtn = document.getElementById('listViewBtn');
+                    // Cambiar las clases de los botones activos/inactivos
+                    function setActiveButton(activeBtn, inactiveBtn) {
+                        activeBtn.classList.remove('text-secondary');
+                        activeBtn.classList.add('text-primary');
+                        inactiveBtn.classList.remove('text-primary');
+                        inactiveBtn.classList.add('text-secondary');
+                    }
+                    // Generar fecha aleatoria dentro de los últimos 30 días
+                    function getRandomDate() {
+                        const daysAgo = Math.floor(Math.random() * 30);
+                        const date = new Date();
+                        date.setDate(date.getDate() - daysAgo);
+                        return date.toLocaleDateString();
+                    }
+                    // Aplicar fechas dinámicas al cargar
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const posts = document.querySelectorAll('.row > div[data-caption]');
+                        posts.forEach(post => {
+                            const dateElem = post.querySelector('h6');
+                            if (dateElem) {
+                                dateElem.textContent = getRandomDate();
+                            }
+                        });
+                    });
+                    gridBtn.addEventListener('click', () => {
+                        setActiveButton(gridBtn, listBtn);
+                        const posts = document.querySelectorAll('.row > div[data-caption]');
+                        posts.forEach(post => {
+                            post.classList.remove('col-12', 'mb-4', 'mb-5');
+                            post.classList.add('col-4');
+                            const overlay = post.querySelector('.overlay-info');
+                            const title = post.querySelector('h4');
+                            const date = post.querySelector('h6');
+                            const likes = post.querySelector('strong');
+                            const caption = post.querySelector('.caption');
+                            if (overlay) overlay.style.display = 'none';
+                            if (title) title.classList.add('d-none');
+                            if (date) date.classList.add('d-none');
+                            if (likes) likes.classList.add('d-none');
+                            if (caption) caption.classList.add('d-none');
+                        });
+                    });
+                    listBtn.addEventListener('click', () => {
+                        setActiveButton(listBtn, gridBtn);
+                        const posts = document.querySelectorAll('.row > div[data-caption]');
+                        posts.forEach(post => {
+                            post.classList.remove('col-4');
+                            post.classList.add('col-12', 'mb-5'); // 🔹 Más separación en list view
+                            const overlay = post.querySelector('.overlay-info');
+                            const title = post.querySelector('h4');
+                            const date = post.querySelector('h6');
+                            const likes = post.querySelector('strong');
+                            const caption = post.querySelector('.caption');
+                            const captionText = post.getAttribute('data-caption') || '';
+                            if (overlay) overlay.style.display = 'block';
+                            if (title) title.classList.remove('d-none');
+                            if (date) date.classList.remove('d-none');
+                            if (likes) likes.classList.remove('d-none');
+                            if (caption) {
+                                caption.classList.remove('d-none');
+                                caption.textContent = captionText;
+                            }
+                        });
+                    });
+                </script>                
+                <!-- 🔽 Parte del GRID con las imágenes -->
+                <div class="row">
+                    <!--Perro-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                          <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h4 class="d-none mb-0">My crazy dog</h4>
+                            <h6 class="text-muted d-none mb-0">06/12</h6>
+                          </div>
+                          <div class="d-flex justify-content-center">
+                            <img src="https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/d2c6d2bf-3549-41ab-ad68-2d291c1deb71?rule=hw396_70" class="img-fluid w-75 rounded" alt="...">
+                          </div>
+                          
+                          <div class="overlay-info position-static text-dark p-1">
+                            <strong class="small d-none">204 Likes</strong>
+                            <div class="caption small d-none"></div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--Familia-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <h4 class="d-none mb-0">Family time</h4>
+                                <h6 class="text-muted d-none mb-0">12/04</h6>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img src="https://apsis.es/wp-content/uploads/2018/08/family-730320_960_720.jpg" class="img-fluid w-75 rounded" alt="Perro feliz">
+                            </div>
+                            <div class="overlay-info position-static text-dark p-1">
+                                <strong class="small d-none">340 Likes</strong>
+                                <div class="caption small d-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Roma-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                          <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h4 class="d-none mb-0">Rome</h4>
+                            <h6 class="text-muted d-none mb-0">06/12</h6>
+                          </div>
+                          <div class="d-flex justify-content-center">
+                            <img src="https://tourismmedia.italia.it/is/image/mitur/20220127150143-colosseo-roma-lazio-shutterstock-756032350-2?wid=1600&hei=900&fit=constrain,1&fmt=webp" class="img-fluid w-75 rounded" alt="...">
+                          </div>
+                          
+                          <div class="overlay-info position-static text-dark p-1">
+                            <strong class="small d-none">204 Likes</strong>
+                            <div class="caption small d-none"></div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--Programacion-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <h4 class="d-none mb-0">Programming</h4>
+                                <h6 class="text-muted d-none mb-0">28/09</h6>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img src="https://www.uoc.edu/content/dam/news/images/noticies/2024/programaci%C3%B3n%20dos.jpg/_jcr_content/renditions/cq5dam.web.1280.1280.jpeg" class="img-fluid w-75 rounded" alt="Partido de fútbol">
+                            </div>
+                            <div class="overlay-info position-static text-dark p-1">
+                                <strong class="small d-none">128 Likes</strong>
+                                <div class="caption small d-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Futbol-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                          <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h4 class="d-none mb-0">Messi</h4>
+                            <h6 class="text-muted d-none mb-0">06/12</h6>
+                          </div>
+                          <div class="d-flex justify-content-center">
+                            <img src="https://cdn.conmebol.com/wp-content/uploads/2023/06/000_334P84K-scaled.jpg" class="img-fluid w-75 rounded" alt="...">
+                          </div>
+                          
+                          <div class="overlay-info position-static text-dark p-1">
+                            <strong class="small d-none">204 Likes</strong>
+                            <div class="caption small d-none"></div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--Concierto-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                          <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h4 class="d-none mb-0">Ed Sheeran :)</h4>
+                            <h6 class="text-muted d-none mb-0">06/12</h6>
+                          </div>
+                          <div class="d-flex justify-content-center">
+                            <img src="https://www.elcorazondetenerife.com/wp-content/uploads/2023/12/Ed-Sheeran.jpg" class="img-fluid w-75 rounded" alt="...">
+                          </div>
+                          
+                          <div class="overlay-info position-static text-dark p-1">
+                            <strong class="small d-none">204 Likes</strong>
+                            <div class="caption small d-none"></div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--Comida-->  
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <h4 class="d-none mb-0">Pizzaaa.... </h4>
+                                <h6 class="text-muted d-none mb-0">03/08</h6>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img src="https://www.laespanolaaceites.com/wp-content/uploads/2019/06/pizza-con-chorizo-jamon-y-queso-1080x671.jpg" class="img-fluid w-75 rounded" alt="Reunión familiar">
+                            </div>
+                            <div class="overlay-info position-static text-dark p-1">
+                                <strong class="small d-none">216 Likes</strong>
+                                <div class="caption small d-none"></div>
+                            </div>    
+                        </div>
+                    </div>
+                    <!--Musica-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <h4 class="d-none mb-0">NEW SONG FROM KEYBLADE</h4>
+                                <h6 class="text-muted d-none mb-0">19/11</h6>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img src="https://cdn-images.dzcdn.net/images/cover/0699dc54cbe6939323870ccb1b6465e5/0x1900-000000-80-0-0.jpg" class="img-fluid w-75 rounded" alt="Pantalla de código">
+                            </div>
+                            <div class="overlay-info position-static text-dark p-1">
+                                <strong class="small d-none">512 Likes</strong>
+                                <div class="caption small d-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Videojuegos Rainbow Six Siege-->
+                    <div class="col-4 mt-3" data-caption="There is an example of a very good photo that you can post on instagram">
+                        <div class="position-relative">
+                          <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h4 class="d-none mb-0">Love Rainbow Six</h4>
+                            <h6 class="text-muted d-none mb-0">06/12</h6>
+                          </div>
+                          <div class="d-flex justify-content-center">
+                            <img src="https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/4IZecJyhvcIUxxu0Rd1vjX/b9fb7577b74b56704d3d2b34be639397/R6S_Y7_KEYART_STANDARD.jpg" class="img-fluid w-75 rounded" alt="...">
+                          </div>
+                          
+                          <div class="overlay-info position-static text-dark p-1">
+                            <strong class="small d-none">204 Likes</strong>
+                            <div class="caption small d-none"></div>
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
