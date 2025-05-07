@@ -71,18 +71,6 @@
                             </ul>
                         </div>
                     </div>
-                    <script>
-                        const settingsInfo = document.getElementById('settingsInfo');
-                        const arrowIcon = document.getElementById('arrowIcon');
-                        settingsInfo.addEventListener('show.bs.collapse', () => {
-                            arrowIcon.classList.remove('bi-chevron-down');
-                            arrowIcon.classList.add('bi-chevron-up');
-                        });
-                        settingsInfo.addEventListener('hide.bs.collapse', () => {
-                            arrowIcon.classList.remove('bi-chevron-up');
-                            arrowIcon.classList.add('bi-chevron-down');
-                        });
-                    </script>
                 </div>
             </div>
             <!-- ✅ Caja visual que contiene botones y galería -->
@@ -108,23 +96,6 @@
                         inactiveBtn.classList.remove('text-primary');
                         inactiveBtn.classList.add('text-secondary');
                     }
-                    // Generar fecha aleatoria dentro de los últimos 30 días
-                    function getRandomDate() {
-                        const daysAgo = Math.floor(Math.random() * 30);
-                        const date = new Date();
-                        date.setDate(date.getDate() - daysAgo);
-                        return date.toLocaleDateString();
-                    }
-                    // Aplicar fechas dinámicas al cargar
-                    document.addEventListener('DOMContentLoaded', () => {
-                        const posts = document.querySelectorAll('.row > div[data-caption]');
-                        posts.forEach(post => {
-                            const dateElem = post.querySelector('h6');
-                            if (dateElem) {
-                                dateElem.textContent = getRandomDate();
-                            }
-                        });
-                    });
                     gridBtn.addEventListener('click', () => {
                         setActiveButton(gridBtn, listBtn);
                         const posts = document.querySelectorAll('.row > div[data-caption]');
